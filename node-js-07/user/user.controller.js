@@ -6,8 +6,11 @@ const bcrypt = require('bcryptjs')
 const jwt = require('jsonwebtoken')
 const User = require('./User')
 
-async function getUsers(_req, res) {
+async function getUsers(req, res) {
   // res.json({ message: 'users' })
+  const currentUser = req.user // получаем текущего юзера, который приходит из authorize()
+  console.log('currentUser:', currentUser)
+
   const users = await User.find()
   res.json(users) // получаем всех юзеров в postman
 }
@@ -171,6 +174,33 @@ async function login(req, res) {
   return res.json({ token }) // получаем token юзера в postman
 }
 
+async function authorize(req, res, next) {
+  const authorizationHeader = req.get('Authorization') // получаем Header 'Authorization'
+  if (!authorizationHeader) {
+    return res.status(401).send('User is unauthorized!')
+  }
+  const token = authorizationHeader.replace('Bearer ', '') // replace() - это метод строки, заменяем 'Bearer ' на пустую строку и получаем только token
+
+  try {
+    const payload = await jwt.verify(token, process.env.JWT_SECRET) // проверяем token на валидность
+    const { userId } = payload
+    console.log('userId:', userId)
+
+    const user = await User.findById(userId) // ищем юзера по id в BD
+    console.log('user:', user)
+
+    if (!user) {
+      return res.status(401).send('User is unauthorized!')
+    }
+
+    req.user = user // текущий юзер в getUsers()
+
+    next()
+  } catch (error) {
+    return res.status(401).send(error)
+  }
+}
+
 module.exports = {
   getUsers,
   getUser,
@@ -181,4 +211,5 @@ module.exports = {
   createUserTask,
   deleteUserTask,
   login,
+  authorize,
 }
