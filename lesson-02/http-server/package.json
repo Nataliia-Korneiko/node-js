@@ -1,0 +1,17 @@
+{
+  "name": "http-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "start:dev": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Nataliia Korneiko <korneyko_ns@ukr.net>",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^2.0.7"
+  }
+}
