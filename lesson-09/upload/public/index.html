@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://unpkg.com/xp.css" />
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+  <body>
+    <div class="window zoom" style="width: 300px">
+      <div class="title-bar">
+        <div class="title-bar-text">Загружаем файл на сервер</div>
+        <div class="title-bar-controls">
+          <button aria-label="Minimize"></button>
+          <button aria-label="Maximize"></button>
+          <button aria-label="Close"></button>
+        </div>
+      </div>
+      <div class="container">
+        <form
+          action="/upload"
+          method="POST"
+          class="window-body"
+          enctype="multipart/form-data"
+        >
+          <div class="field-row-stacked" style="width: 200px">
+            <label for="id1">Введите имя для файла</label>
+            <input id="id1" name="name" type="text" />
+          </div>
+          <div class="field-row-stacked" style="width: 200px">
+            <label for="id2">Файл</label>
+            <input id="id2" name="avatar" type="file" />
+          </div>
+          <div class="field-row-stacked" style="width: 200px">
+            <label for="id3">Краткое описание</label>
+            <textarea id="id3" name="description" rows="8"></textarea>
+          </div>
+          <button type="submit">Отправить</button>
+          <button type="reset">Сбросить</button>
+        </form>
+      </div>
+    </div>
+    <script src="/js/main.js"></script>
+  </body>
+</html>

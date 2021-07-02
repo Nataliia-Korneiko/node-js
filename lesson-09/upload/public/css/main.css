@@ -1,0 +1,19 @@
+body {
+  display: flex;
+  justify-content: center;
+  /* align-content: center; */
+}
+
+button {
+  margin-top: 10px;
+}
+
+.zoom {
+  /* zoom: 175%; */
+  transform: translateY(50%) scale(1.75);
+}
+
+.container {
+  width: 80%;
+  margin: 0 auto;
+}
