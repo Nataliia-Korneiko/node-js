@@ -1,0 +1,18 @@
+{
+  "name": "lesson-12",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "Nataliia Korneiko <korneyko_ns@ukr.net>",
+  "license": "ISC",
+  "dependencies": {
+    "ws": "^7.4.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.12"
+  }
+}
